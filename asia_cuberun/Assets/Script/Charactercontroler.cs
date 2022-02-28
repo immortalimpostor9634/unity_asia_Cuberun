@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class Charactercontroler : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Rigidbody playerRB;
+
     void Start()
     {
-        
+        playerRB = GetComponent<Rigidbody>();
+
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            playerRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
+        }
     }
 }
