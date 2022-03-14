@@ -12,6 +12,8 @@ public class Charactercontroler : MonoBehaviour
 
     public bool isOnGround = true;     //檢測是否在地面
 
+    public bool gameOver = false;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -33,8 +35,15 @@ public class Charactercontroler : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+        }
+        else if(other.gameObject.CompareTag("Obstacle"))
+        {
+            gameOver = true;
 
-        isOnGround = true;
-
+            print("遊戲結束");
+        }
     }
 }
