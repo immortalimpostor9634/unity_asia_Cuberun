@@ -14,12 +14,18 @@ public class Charactercontroler : MonoBehaviour
 
     public bool gameOver = false;    //改成public才能被外部城市所存取(ex:Moleft.cs存取)
 
+    //Week-06控制角色動畫
+    private Animator playerAnim;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
 
         Physics.gravity *= gravityModifier;   
         //等同Physics.gravity * Physics.gravity = gravityModifier
+
+        //將遊戲物件的Animator元件掛載到playerAnim變數上，有啟動變數的意思
+        playerAnim = GetComponent<Animator>();
 
     }
 
@@ -30,6 +36,9 @@ public class Charactercontroler : MonoBehaviour
             playerRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
 
             isOnGround = false;
+
+            //透過#Animator視窗的Parameters籤頁可知Jump_trig變數
+            playerAnim.SetTrigger("Jump_trig");
         }
     }
 
