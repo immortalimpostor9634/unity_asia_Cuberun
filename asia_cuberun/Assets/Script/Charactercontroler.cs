@@ -12,7 +12,7 @@ public class Charactercontroler : MonoBehaviour
 
     public bool isOnGround = true;     //檢測是否在地面
 
-    public bool gameOver = false;
+    public bool gameOver = false;    //改成public才能被外部城市所存取(ex:Moleft.cs存取)
 
     void Start()
     {
