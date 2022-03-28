@@ -18,6 +18,8 @@ public class Charactercontroler : MonoBehaviour
 
     public ParticleSystem ps_explosion;   //定義控制爆炸粒子物件的變數
 
+    public ParticleSystem ps_drit;  //定義飛濺粒子特效的變數
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody>();
@@ -40,6 +42,8 @@ public class Charactercontroler : MonoBehaviour
 
             //透過#Animator視窗的Parameters籤頁可知Jump_trig變數
             playerAnim.SetTrigger("Jump_trig");
+
+            ps_drit.Stop();
         }
     }
 
@@ -47,7 +51,9 @@ public class Charactercontroler : MonoBehaviour
     {
         if(other.gameObject.CompareTag("Ground"))
         {
-            isOnGround = true;
+            isOnGround = true;  //避免二段跳
+
+            ps_drit.Play();
         }
         else if(other.gameObject.CompareTag("Obstacle"))
         {
@@ -61,6 +67,7 @@ public class Charactercontroler : MonoBehaviour
 
             ps_explosion.Play();
 
+            ps_drit.Stop();
         }
     }
 
