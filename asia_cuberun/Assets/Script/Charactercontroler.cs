@@ -14,8 +14,9 @@ public class Charactercontroler : MonoBehaviour
 
     public bool gameOver = false;    //改成public才能被外部城市所存取(ex:Moleft.cs存取)
 
-    //Week-06控制角色動畫
-    private Animator playerAnim;
+    private Animator playerAnim;    //控制角色動畫
+
+    public ParticleSystem ps_explosion;   //定義控制爆炸粒子物件的變數
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class Charactercontroler : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround && !gameOver)
         {
             playerRB.AddForce(Vector3.up * 10,ForceMode.Impulse);
 
@@ -53,6 +54,14 @@ public class Charactercontroler : MonoBehaviour
             gameOver = true;
 
             print("遊戲結束");
+
+            playerAnim.SetBool("Death_b",true);
+
+            playerAnim.SetInteger("Death_int",1); 
+
+            ps_explosion.Play();
+
         }
     }
+
 }
